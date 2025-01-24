@@ -1,8 +1,6 @@
 # HTMLang
 Write on Markdown and get HTML! This is a converter that will allow you to write HTML more conveniently!
 
-Sure, here's a detailed documentation for the code in English:
-
 ```
 # Markdown to HTML Converter
 
