@@ -81,7 +81,7 @@ This is a sample document in the HTMLang format.
 2. Ordered list item 2
 
 ## Links and Images
-Here is a [link to Google](https://www.google.com) and an ![image](https://via.placeholder.com/150).
+Here is a `[link to Google](https://www.google.com)` and an `![image](https://via.placeholder.com/150)`.
 
 ## Code and Formatting
 Here is some `inline code` and a code block:
