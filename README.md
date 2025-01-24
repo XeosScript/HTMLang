@@ -5,7 +5,11 @@ DO NOT CLICK HERE [>>PLEASE<<](https://youtu.be/dQw4w9WgXcQ?si=-ldXUNY6gjv_vhxK)
 # HTMLang
 Write on Markdown and get HTML! This is a converter that will allow you to write HTML more conveniently!
 
+## !!! READ !!!
+
 Be sure to include tags with the language and page name at the beginning of the code:
+
+## Syntax
 
 ```
 language: <lang>
