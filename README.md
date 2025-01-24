@@ -74,25 +74,29 @@ title: My Document
 This is a sample document in the HTMLang format.
 
 ## Lists
+```
 - Unordered list item 1
 - Unordered list item 2
   - Nested unordered list item
 1. Ordered list item 1
 2. Ordered list item 2
+```
 
 ## Links and Images
-Here is a `[link to Google](https://www.google.com)` and an `![image](https://via.placeholder.com/150)`.
+Here is a 
+
+`[link to Google](https://www.google.com)` 
+
+and an 
+
+`![image](https://via.placeholder.com/150)`.
 
 ## Code and Formatting
 Here is some `inline code` and a code block:
 
-```python
-print("Hello, World!")
-```
+`> This is a blockquote.`
 
-> This is a blockquote.
-
-**This is bold text** and *this is italic text*.
+`**This is bold text**` and `*this is italic text*`.
 ```
 
 ## Example Output
