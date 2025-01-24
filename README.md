@@ -179,7 +179,6 @@ The generated HTML file will look similar to the following:
 ## Dependencies
 
 - Python 3.x
-- `tkinter` (built-in)
 
 ## Limitations
 
