@@ -3,6 +3,13 @@ Protected by the MIT license
 # HTMLang
 Write on Markdown and get HTML! This is a converter that will allow you to write HTML more conveniently!
 
+Be sure to include tags with the language and page name at the beginning of the code:
+
+```
+language: <lang>
+title: <page name>
+```
+
 ```
 # Markdown to HTML Converter
 
