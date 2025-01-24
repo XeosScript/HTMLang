@@ -9,12 +9,12 @@ Write on Markdown and get HTML! This is a converter that will allow you to write
 
 Be sure to include tags with the language and page name at the beginning of the code:
 
-## Syntax
-
 ```
 language: <lang>
 title: <page name>
 ```
+
+## Syntax
 
 ```
 # Markdown to HTML Converter
