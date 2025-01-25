@@ -33,6 +33,13 @@ This Python script converts a custom Markdown-like format (referred to as "HTMLa
   - Code blocks
   - Blockquotes
   - Bold and italic formatting
+  - Interactive elements:
+    - Buttons
+    - Sliders
+    - Checkboxes
+    - Toggles
+    - Dropdowns
+    - Text inputs
 - Applies basic styling to the generated HTML:
   - Responsive container with a maximum width
   - Styling for code blocks, blockquotes, and images
@@ -67,6 +74,12 @@ After the metadata, the file can contain the following Markdown-like elements:
 - Bold text: `**bold text**` or `__bold text__`
 - Italic text: `*italic text*` or `_italic text_`
 - Inline code: `` `inline code` ``
+- Buttons: `[button title="Button Title"] Button Text`
+- Sliders: `[slider]`
+- Checkboxes: `[checkbox] Label`
+- Toggles: `[toggle] Content to toggle`
+- Dropdowns: `[dropdown] Option1, Option2, Option3`
+- Text inputs: `[input]`
 
 ## Example Input
 
@@ -76,6 +89,16 @@ title: My Document
 
 # {custom-class} Introduction
 This is a sample document in the HTMLang format.
+
+## Interactive Elements
+Here are some interactive elements:
+
+[button title="Click me!"] Button Text
+[slider]
+[checkbox] Check this
+[toggle] This is toggle content
+[dropdown] Option 1, Option 2, Option 3
+[input] Enter your text here
 
 ## Lists
 ```
@@ -148,6 +171,19 @@ The generated HTML file will look similar to the following:
     <div class="container">
         <h1 class="custom-class">Introduction</h1>
         <p>This is a sample document in the HTMLang format.</p>
+
+        <h2>Interactive Elements</h2>
+        <button>Button Text</button>
+        <input type="range" min="1" max="100" value="50" class="slider">
+        <input type="checkbox"> Check this
+        <button onclick="toggleAccordion()">Свернуть/развернуть</button>
+        <div id="accordionContent" style="display: none;">This is toggle content</div>
+        <select>
+            <option value="Option 1">Option 1</option>
+            <option value="Option 2">Option 2</option>
+            <option value="Option 3">Option 3</option>
+        </select>
+        <input type="text" placeholder="Введите текст здесь">
 
         <h2>Lists</h2>
         <ul>
