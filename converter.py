@@ -103,15 +103,27 @@ def convert_to_html(custom_text):
             else:
                 break
 
-        # Остальные элементы
-        if line.startswith('[') and ']' in line and '(' in line:
-            text = re.search(r'\[(.*?)\]', line).group(1)
-            url = re.search(r'\((.*?)\)', line).group(1)
-            html_output.append("    " * current_level + f'<a href="{url}">{text}</a>')
-        elif line.startswith('!['):
-            alt_text = re.search(r'\[(.*?)\]', line).group(1)
-            url = re.search(r'\((.*?)\)', line).group(1)
-            html_output.append("    " * current_level + f'<img src="{url}" alt="{alt_text}">')
+        # Обработка интерактивных элементов
+        if line.startswith('[button]'):
+            button_text = line.split(']', 1)[1].strip() if ']' in line else ""
+            html_output.append("    " * current_level + f'<button>{button_text}</button>')
+        elif line.startswith('[slider]'):
+            html_output.append("    " * current_level + '<input type="range" min="1" max="100" value="50" class="slider">')
+        elif line.startswith('[checkbox]'):
+            html_output.append("    " * current_level + '<input type="checkbox"> ' + line[10:].strip())
+        elif line.startswith('[toggle]'):
+            html_output.append("    " * current_level + f'<button onclick="toggleAccordion()">Свернуть/развернуть</button>')
+            html_output.append("    " * current_level + '<div id="accordionContent" style="display: none;">')
+            html_output.append("    " * (current_level + 1) + f"{line[8:].strip()}")
+            html_output.append("    " * current_level + "</div>")
+        elif line.startswith('[dropdown]'):
+            options = line[10:].strip().split(',')
+            html_output.append("    " * current_level + '<select>')
+            for option in options:
+                html_output.append("    " * (current_level + 1) + f'<option value="{option.strip()}">{option.strip()}</option>')
+            html_output.append("    " * current_level + '</select>')
+        elif line.startswith('[input]'):
+            html_output.append("    " * current_level + '<input type="text" placeholder="Введите текст здесь">')
         elif line.startswith('>'):
             html_output.append("    " * current_level + f"<blockquote>{line[1:].strip()}</blockquote>")
         elif line.strip():
@@ -127,7 +139,7 @@ def convert_to_html(custom_text):
         tag, level = tag_stack.pop()
         html_output.append("    " * level + f"</{tag}>")
 
-    # Создаем базовую структуру HTML с базовыми стилями
+    # Создаем базовую структуру HTML с базовыми стилями и скриптами
     html_document = [
         "<!DOCTYPE html>",
         f"<html lang='{language}'>",
@@ -147,25 +159,28 @@ def convert_to_html(custom_text):
         "            margin: 0 auto;",
         "            padding: 20px;",
         "        }",
+        "        button {",
+        "            padding: 10px 15px;",
+        "            font-size: 16px;",
+        "            cursor: pointer;",
+        "        }",
         "        img {",
         "            max-width: 100%;",
         "            height: auto;",
         "        }",
-        "        pre {",
-        "            background-color: #f5f5f5;",
-        "            padding: 15px;",
-        "            border-radius: 5px;",
-        "            overflow-x: auto;",
-        "        }",
-        "        blockquote {",
-        "            border-left: 4px solid #ccc;",
-        "            margin: 0;",
-        "            padding-left: 16px;",
-        "            color: #666;",
-        "        }",
         "    </style>",
         "</head>",
-        "<body>"
+        "<body>",
+        "    <script>",
+        "    function toggleAccordion() {",
+        "        var content = document.getElementById('accordionContent');",
+        "        if (content.style.display === 'none') {",
+        "            content.style.display = 'block';",
+        "        } else {",
+        "            content.style.display = 'none';",
+        "        }",
+        "    }",
+        "    </script>"
     ] + html_output + ["</body>", "</html>"]
 
     return "\n".join(html_document)
